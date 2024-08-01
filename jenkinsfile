@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Build Docker image
+                sh 'docker-compose build'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Add testing steps here (if you have tests for your Go app)
+                // For example, you can run unit tests or use curl to hit the endpoint
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Deploy the app (start the container)
+                sh 'docker-compose up -d'
+            }
+        }
+    }
+}
