@@ -1,26 +1,41 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'golang:1.20-alpine'
+            args '-v $PWD:/go/src/app'
+        }
+    }
+
+    environment {
+        GOPATH = "/go"
+        PATH = "${env.PATH}:${env.GOPATH}/bin"
+    }
 
     stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://your-repository-url.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Build Docker image
-                sh 'docker-compose build'
+                sh 'go build -o hello_world .'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Add testing steps here (if you have tests for your Go app)
-                // For example, you can run unit tests or use curl to hit the endpoint
+                sh 'go test ./...'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Deploy the app (start the container)
-                sh 'docker-compose up -d'
+                sh './hello_world'
             }
         }
     }
