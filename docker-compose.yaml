@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   my_go_app:
-   image: aibenhello
+   build:
+      context: .
+      dockerfile: Dockerfile
    ports: 
     - "8080:8080"
