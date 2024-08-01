@@ -5,26 +5,21 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Add your build steps here (e.g., compiling code, running Docker Compose)
+                // Build Docker image
+                sh 'docker-compose build'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Add your test steps here (e.g., running unit tests)
+                // Add testing steps here (if you have tests for your Go app)
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Add your deployment steps here (e.g., deploying to a server or running the container)
-            }
-        }
-        stage('Hello World') {
-            steps {
-                sh '''
-                echo "Hello World!"
-                '''
+                // Deploy the app (start the container)
+                sh 'docker-compose up -d'
             }
         }
     }
