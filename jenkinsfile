@@ -1,9 +1,11 @@
 pipeline {
     
-    docker {
+    agent {
+        docker {
             image 'docker:latest' // Use the official Docker image
             args '-v /var/run/docker.sock:/var/run/docker.sock' // Bind mount Docker socket
         }
+    }
     
 
     stages {
