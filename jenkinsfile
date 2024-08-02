@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    
+    docker {
+            image 'docker:latest' // Use the official Docker image
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Bind mount Docker socket
+        }
+    
 
     stages {
         stage('Build') {
@@ -7,6 +12,7 @@ pipeline {
                 echo 'Building...'
                 // Build Docker image
                 sh 'docker-compose build'
+                // sh 'go run hello_world.go'
             }
         }
         stage('Test') {
