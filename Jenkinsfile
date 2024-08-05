@@ -6,7 +6,8 @@ pipeline {
             steps {
                 echo 'Building...'
                 // sh 'usermod -aG docker jenkins'
-                sh ' docker ps '
+                // sh ' docker ps '
+                sh 'docker-compose up'
             }
         }
     }
