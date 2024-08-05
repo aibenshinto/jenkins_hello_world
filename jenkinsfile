@@ -12,18 +12,5 @@ pipeline {
                 // sh 'go run hello_world.go'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                // Add testing steps here (if you have tests for your Go app)
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                // Deploy the app (start the container)
-                // sh 'docker-compose up -d'
-            }
-        }
     }
 }
