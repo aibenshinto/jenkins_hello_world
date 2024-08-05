@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                sh 'usermod -aG docker jenkins'
                 sh ' docker ps '
             }
         }
