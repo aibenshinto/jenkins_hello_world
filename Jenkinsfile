@@ -10,7 +10,7 @@ pipeline {
                 // sh 'usermod -aG docker jenkins'
                 // sh ' docker ps '
                 
-                sh 'node -v'
+                sh 'go version'
             }
         }
     }
