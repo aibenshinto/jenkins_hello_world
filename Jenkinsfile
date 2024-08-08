@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker{image 'node:16-alpine'}
+    }
 
     stages {
         stage('Build') {
@@ -7,7 +9,8 @@ pipeline {
                 echo 'Building...'
                 // sh 'usermod -aG docker jenkins'
                 // sh ' docker ps '
-                sh 'docker-compose up'
+                sh 'docker -v'
+                sh 'node -v'
             }
         }
     }
